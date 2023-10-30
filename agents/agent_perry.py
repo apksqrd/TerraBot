@@ -10,6 +10,7 @@ from std_msgs.msg import (
     Bool,
     String,
 )
+import sys
 from topic_def import sensor_types, actuator_types
 import rospy
 
@@ -33,20 +34,28 @@ class SensorData:
 
 
 class ReactiveAgent:
-    def __init__(self, agent_name: str = "Reactive Agent") -> None:
+    def __init__(self, agent_name: str = "ReactiveAgent") -> None:
         self.sensor_data: SensorData = SensorData()
         self.agent_name = agent_name
 
         self.parse_arguments()
         self.init_ros()
 
+        rospy.sleep(2)  # Give a chance for the initial sensor values to be read
+        while rospy.get_time() == 0:
+            rospy.sleep(0.1)  # Wait for clock to start up correctly
+
+        while not rospy.core.is_shutdown():
+            self.ping_pub.publish(True)
+            # print("poopy")
+            # sys.stdout.write("peepy")
+
     def parse_arguments(self) -> None:
         parser = argparse.ArgumentParser(description=self.agent_name)
         parser.add_argument(
             "-l", "--log", action="store_true", help="print sensor values"
         )
-        parser.add_argument(
-            "-s", "--sim", action="store_true", help="use simulator")
+        parser.add_argument("-s", "--sim", action="store_true", help="use simulator")
         args = parser.parse_args()
 
         self.is_logging = args.log
@@ -69,11 +78,11 @@ class ReactiveAgent:
         )
 
         self.ping_pub = rospy.Publisher("ping", Bool, latch=True, queue_size=1)
+
         self.camera_pub = rospy.Publisher(
             "camera", actuator_types["cam"], latch=True, queue_size=1
         )
-        self.speedup_pub = rospy.Publisher(
-            "speedup", Int32, latch=True, queue_size=1)
+        self.speedup_pub = rospy.Publisher("speedup", Int32, latch=True, queue_size=1)
         self.freq_pub = rospy.Publisher(
             "freq_input", actuator_types["freq"], latch=True, queue_size=1
         )
@@ -87,43 +96,43 @@ class ReactiveAgent:
         rospy.Subscriber(
             "level_output", sensor_types["level"], self.level_reaction, self
         )
-        rospy.Subscriber(
-            "temp_output", sensor_types["temp"], self.temp_reaction, self)
+        rospy.Subscriber("temp_output", sensor_types["temp"], self.temp_reaction, self)
         rospy.Subscriber(
             "humid_output", sensor_types["humid"], self.humid_reaction, self
         )
         rospy.Subscriber(
             "weight_output", sensor_types["weight"], self.weight_reaction, self
         )
-        rospy.Subscriber(
-            "cur_output", sensor_types["cur"], self.power_reaction, self)
+        rospy.Subscriber("cur_output", sensor_types["cur"], self.power_reaction, self)
 
     # def save_moisture(self, data)
 
-    def moisture_reaction(self, data):
+    def moisture_reaction(self, data, sensorsG):
         self.sensor_data.moisture_avg = (data.data[0] + data.data[1]) / 2.0
         self.sensor_data.moisture_raw = data.data
-        print(type(data))
+        print("Moisture inputs types:", type(self), type(data), type(sensorsG))
 
-    def light_reaction(self, data):
+    def light_reaction(self, data, sensorsG):
         self.sensor_data.light_level_avg = data
 
-    def level_reaction(self):
+    def level_reaction(self, data, sensorsG):
+        print(
+            "let there be level",
+        )
         pass
 
-    def temp_reaction(self):
+    def temp_reaction(self, data, sensorsG):
         pass
 
-    def humid_reaction(self):
+    def humid_reaction(self, data, sensorsG):
         pass
 
-    def weight_reaction(self):
+    def weight_reaction(self, data, sensorsG):
         pass
 
-    def power_reaction(self):
+    def power_reaction(self, data, sensorsG):
         pass
 
 
-print("poop")
 # main function
 ReactiveAgent()
