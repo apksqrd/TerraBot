@@ -8,7 +8,7 @@ from reactive_agent import ReactiveAgent
 
 
 def clamp(x, minimum, maximum):
-    max(min(x, maximum), minimum)
+    return max(min(x, maximum), minimum)
 
 
 class BalancingAgent(ReactiveAgent):
