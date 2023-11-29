@@ -1,10 +1,10 @@
-from reactive_agent import ReactiveAgent
+from implementations.reactive_agent import ReactiveAgent
 
 # Sensor Range Limits and Optimal Ranges:
 #  Temperature = [24,29) and [26,27]
-#  Humidity – [70,80) and [75,80]
-#  Light – 8am-10pm [850,950) / 10pm-8am LEDs off and daytime [860,940]
-#  Soil Moisture – [500-650) and [550,600]
+#  Humidity = [70,80) and [75,80]
+#  Light = 8am-10pm [850,950) / 10pm-8am LEDs off and daytime [860,940]
+#  Soil Moisture = [500-650) and [550,600]
 
 
 def clamp(x, minimum, maximum):
