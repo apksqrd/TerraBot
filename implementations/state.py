@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-
+import math
 
 @dataclass
 class SensorData:
@@ -30,5 +30,4 @@ def get_sensor_data_cost(sensor_data: SensorData) -> float:
     #  Humidity = [70,80) and [75,80]
     #  Light = 8am-10pm [850,950) / 10pm-8am LEDs off and daytime [860,940]
     #  Soil Moisture = [500-650) and [550,600]
-    # TODO
-    return 0
+    return math.sqrt((sensor_data.temperature-26.5)^2 + ((sensor_data.humidity-77.5)/5)^2 + ((sensor_data.soil_moisture-600)/50)^2)
