@@ -1,4 +1,4 @@
-from implementations.reactive_agent import ReactiveAgent
+from implementations.agents.reactive_agent import ReactiveAgent
 
 # Sensor Range Limits and Optimal Ranges:
 #  Temperature = [24,29) and [26,27]

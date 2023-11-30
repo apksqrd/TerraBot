@@ -24,6 +24,7 @@ class State:
     actuator_values: ActuatorValues
 
 
+# TODO: abstract this
 def get_sensor_data_cost(sensor_data: SensorData) -> float:
     # Sensor Range Limits and Optimal Ranges:
     #  Temperature = [24,29) and [26,27]
