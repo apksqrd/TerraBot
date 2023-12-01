@@ -6,7 +6,9 @@ from state import SensorData, State, ActuatorValues
 
 class SingleSensorDataBasedActuatorFinder(ABC):
     @abstractmethod
-    def find_best_actuator(self, current_sensor_data: SensorData) -> ActuatorValues:
+    def find_best_actuator_values(
+        self, current_sensor_data: SensorData
+    ) -> ActuatorValues:
         raise NotImplementedError
 
 
@@ -22,4 +24,4 @@ class SingleSensorDataBasedAgent(ReactiveAgent):
     def process_output(self, data, sensor_type_name):
         super().process_output(data, sensor_type_name)
 
-        self.actuator_finder.find_best_actuator(self.sensor_data)
+        self.actuator_finder.find_best_actuator_values(self.sensor_data)
