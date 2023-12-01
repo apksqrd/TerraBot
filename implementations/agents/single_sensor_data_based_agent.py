@@ -10,7 +10,6 @@ class SingleSensorDataBasedActuatorFinder(ABC):
         raise NotImplementedError
 
 
-# TODO
 class SingleSensorDataBasedAgent(ReactiveAgent):
     def __init__(
         self,
@@ -21,5 +20,6 @@ class SingleSensorDataBasedAgent(ReactiveAgent):
         self.actuator_finder = actuator_finder
 
     def process_output(self, data, sensor_type_name):
-        # TODO
-        pass
+        super().process_output(data, sensor_type_name)
+
+        self.actuator_finder.find_best_actuator(self.sensor_data)

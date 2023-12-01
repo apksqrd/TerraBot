@@ -17,6 +17,8 @@ class RangeBasedSensorDataCostEvaluator(SensorDataCostEvaluator):
         #  Humidity = [70,80) and [75,80]
         #  Light = 8am-10pm [850,950) / 10pm-8am LEDs off and daytime [860,940]
         #  Soil Moisture = [500-650) and [550,600]
+
+        # TODO: time
         return sqrt(
             (sensor_data.temperature_avg - 26.5) ** 2
             + ((sensor_data.humidity_avg - 77.5) / 5) ** 2
