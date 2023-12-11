@@ -14,8 +14,9 @@ agent0 = SingleSensorDataBasedAgent(
     )
 )
 
-# run the agent
-# agent0.start_agent()
 
-# TODO Run below code for testing purposes
-# print(__name__)
+# run the agent
+if __name__ == "__main__":
+    # the above statement is true even if you run this file with another python script
+
+    agent0.start_agent()

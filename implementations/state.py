@@ -9,7 +9,7 @@ class SensorData:
     soil_moisture: tuple[int, int]
     weight: tuple[float, float]
     camera: object  # Ignore for now
-    time: float  # TODO
+    time: float  # in seconds
 
     temperature_avg: float = field(init=False)
     humidity_avg: float = field(init=False)

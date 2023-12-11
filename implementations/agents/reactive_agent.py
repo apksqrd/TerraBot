@@ -13,7 +13,7 @@ import sys
 from topic_def import sensor_types, actuator_types
 import rospy
 from collections import defaultdict
-from state import SensorData, State, ActuatorValues
+from implementations.state import SensorData, State, ActuatorValues
 
 
 class ReactiveAgent:
@@ -212,4 +212,4 @@ class ReactiveAgent:
             if actuator_values.water_pump != self.actuator_values.water_pump:
                 self.__water_pump_publisher.publish(actuator_values.water_pump)
 
-        self.__actuator_values = actuator_types
+        self.__actuator_values = actuator_values
