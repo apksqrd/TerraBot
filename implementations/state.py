@@ -3,11 +3,11 @@ from dataclasses import dataclass, field
 
 @dataclass(frozen=True)
 class SensorData:
-    temperature: tuple[int, int]
-    humidity: tuple[int, int]
-    light: tuple[int, int]
-    soil_moisture: tuple[int, int]
-    weight: tuple[float, float]
+    temperature: "tuple[int, int]"
+    humidity: "tuple[int, int]"
+    light: "tuple[int, int]"
+    soil_moisture: "tuple[int, int]"
+    weight: "tuple[float, float]"
     camera: object  # Ignore for now
     time: float  # in seconds
 

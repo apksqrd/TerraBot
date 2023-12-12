@@ -6,7 +6,7 @@ def get_raw_data(path_to_data: str = "data/simulation_data.csv") -> DataFrame:
     return pd.read_csv(path_to_data)
 
 
-def process_data(data: DataFrame) -> tuple[DataFrame, DataFrame]:
+def process_data(data: DataFrame) -> "tuple[DataFrame, DataFrame]":
     # TODO
     # should return (X, y)
     raise NotImplementedError

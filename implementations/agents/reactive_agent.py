@@ -16,6 +16,7 @@ from collections import defaultdict
 from implementations.state import SensorData, State, ActuatorValues
 
 
+# TODO: full type annotations for this
 class ReactiveAgent:
     def __init__(
         self,
