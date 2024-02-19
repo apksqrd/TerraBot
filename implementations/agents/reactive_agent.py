@@ -196,7 +196,7 @@ class ReactiveAgent:
     def state(self) -> State:
         return State(self.sensor_data, self.actuator_values)
 
-    def set_actuator_values(self, actuator_values: ActuatorValues, redundant: Bool):
+    def set_actuator_values(self, actuator_values: ActuatorValues, redundant: bool):
         # I didn't annotate this with @actuator_values.setter because it didn't support optional arguments
 
         if redundant:
